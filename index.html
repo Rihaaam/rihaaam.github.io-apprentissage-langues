@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mes PDF Téléchargeables</title>
+  <title>Apprentissage des langues</title>
   <style>
+    /* =======================
+       CSS Global
+    ======================= */
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
@@ -14,7 +17,7 @@
     }
 
     header {
-      background-color: #4CAF50;
+      background-color: #2196F3;
       color: white;
       padding: 20px 0;
       text-align: center;
@@ -25,15 +28,16 @@
       font-size: 2rem;
     }
 
+    /* =======================
+       Menu principal + sous-menus
+    ======================= */
     nav {
       position: sticky;
       top: 0;
       background-color: #333;
       z-index: 1000;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 5px 0;
+      justify-content: center;
     }
 
     nav ul {
@@ -41,42 +45,58 @@
       margin: 0;
       padding: 0;
       display: flex;
-      justify-content: center;
       flex-wrap: wrap;
     }
 
     nav ul li {
-      margin: 5px 10px;
+      position: relative;
     }
 
     nav ul li a {
+      display: block;
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 10px 15px;
-      display: block;
-      border-radius: 4px;
+      padding: 12px 18px;
       transition: background-color 0.3s;
-      cursor: pointer;
     }
 
     nav ul li a:hover,
     nav ul li a.active {
-      background-color: #4CAF50;
+      background-color: #2196F3;
     }
 
-    .search-container {
-      margin: 10px 0;
+    /* Sous-menu */
+    nav ul li ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #444;
+      min-width: 180px;
+      border-radius: 0 0 6px 6px;
+      overflow: hidden;
+      z-index: 1000;
     }
 
-    .search-container input {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      width: 200px;
-      font-size: 1rem;
+    nav ul li:hover > ul {
+      display: block;
     }
 
+    nav ul li ul li a {
+      padding: 10px 15px;
+      font-weight: normal;
+    }
+
+    nav ul li ul li ul {
+      left: 100%;
+      top: 0;
+      border-radius: 0 6px 6px 0;
+    }
+
+    /* =======================
+       Section principale
+    ======================= */
     section {
       padding: 40px 20px;
       max-width: 1200px;
@@ -121,7 +141,7 @@
       display: inline-block;
       margin-top: 8px;
       padding: 8px 16px;
-      background-color: #4CAF50;
+      background-color: #2196F3;
       color: white;
       border: none;
       border-radius: 6px;
@@ -132,126 +152,85 @@
     }
 
     .download-btn:hover {
-      background-color: #45a049;
+      background-color: #1976D2;
     }
 
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 1.6rem;
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
       }
-      .pdf-item img {
-        max-width: 140px;
+
+      nav ul li ul {
+        position: relative;
+      }
+
+      nav ul li ul li ul {
+        position: relative;
       }
     }
+
   </style>
 </head>
 <body>
 
 <header>
-  <h1>Mes PDF Téléchargeables</h1>
+  <h1>Apprentissage des langues</h1>
 </header>
 
 <nav>
   <ul>
-    <li><a class="filter-btn active" data-category="all">Tout</a></li>
-    <li><a class="filter-btn" data-category="cours">Cours</a></li>
-    <li><a class="filter-btn" data-category="exercices">Exercices</a></li>
-    <li><a class="filter-btn" data-category="references">Références</a></li>
+    <li><a class="active" href="index.html">Tout</a></li>
+
+    <!-- Menu Cours -->
+    <li>
+      <a href="#">Cours</a>
+      <ul>
+        <li>
+          <a href="#">Anglais</a>
+          <ul>
+            <li><a href="cours-anglais-grammaire.html">Grammaire</a></li>
+            <li><a href="cours-anglais-conjugaison.html">Conjugaison</a></li>
+            <li><a href="cours-anglais-vocabulaire.html">Vocabulaire</a></li>
+            <li><a href="cours-anglais-oral.html">Oral</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Arabe</a>
+          <ul>
+            <li><a href="cours-arabe-grammaire.html">Grammaire</a></li>
+            <li><a href="cours-arabe-conjugaison.html">Conjugaison</a></li>
+            <li><a href="cours-arabe-vocabulaire.html">Vocabulaire</a></li>
+            <li><a href="cours-arabe-oral.html">Oral</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Menu Exercices -->
+    <li>
+      <a href="#">Exercices</a>
+      <ul>
+        <li><a href="exercices-anglais.html">Anglais</a></li>
+        <li><a href="exercices-arabe.html">Arabe</a></li>
+      </ul>
+    </li>
+
+    <!-- Menu Références -->
+    <li>
+      <a href="#">Références</a>
+      <ul>
+        <li><a href="references-anglais.html">Anglais</a></li>
+        <li><a href="references-arabe.html">Arabe</a></li>
+      </ul>
+    </li>
   </ul>
-  <div class="search-container">
-    <input type="text" id="searchInput" placeholder="Rechercher un PDF...">
-  </div>
 </nav>
 
 <section>
   <div class="pdf-container">
-
-    <!-- Cours -->
-    <div class="pdf-item" data-category="cours" data-title="Cours 1">
-      <a href="assets/pdf/cours1.pdf" download><img src="assets/images/image_cours1.png" alt="Cours 1"></a>
-      <p>Cours 1</p>
-      <a href="assets/pdf/cours1.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="cours" data-title="Cours 2">
-      <a href="assets/pdf/cours2.pdf" download><img src="assets/images/image_cours2.png" alt="Cours 2"></a>
-      <p>Cours 2</p>
-      <a href="assets/pdf/cours2.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="cours" data-title="Cours 3">
-      <a href="assets/pdf/cours3.pdf" download><img src="assets/images/image_cours3.png" alt="Cours 3"></a>
-      <p>Cours 3</p>
-      <a href="assets/pdf/cours3.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-
-    <!-- Exercices -->
-    <div class="pdf-item" data-category="exercices" data-title="Exercice 1">
-      <a href="assets/pdf/exercice1.pdf" download><img src="assets/images/image_exercice1.png" alt="Exercice 1"></a>
-      <p>Exercice 1</p>
-      <a href="assets/pdf/exercice1.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="exercices" data-title="Exercice 2">
-      <a href="assets/pdf/exercice2.pdf" download><img src="assets/images/image_exercice2.png" alt="Exercice 2"></a>
-      <p>Exercice 2</p>
-      <a href="assets/pdf/exercice2.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="exercices" data-title="Exercice 3">
-      <a href="assets/pdf/exercice3.pdf" download><img src="assets/images/image_exercice3.png" alt="Exercice 3"></a>
-      <p>Exercice 3</p>
-      <a href="assets/pdf/exercice3.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-
-    <!-- Références -->
-    <div class="pdf-item" data-category="references" data-title="Référence 1">
-      <a href="assets/pdf/reference1.pdf" download><img src="assets/images/image_reference1.png" alt="Référence 1"></a>
-      <p>Référence 1</p>
-      <a href="assets/pdf/reference1.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="references" data-title="Référence 2">
-      <a href="assets/pdf/reference2.pdf" download><img src="assets/images/image_reference2.png" alt="Référence 2"></a>
-      <p>Référence 2</p>
-      <a href="assets/pdf/reference2.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="references" data-title="Référence 3">
-      <a href="assets/pdf/reference3.pdf" download><img src="assets/images/image_reference3.png" alt="Référence 3"></a>
-      <p>Référence 3</p>
-      <a href="assets/pdf/reference3.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-    <div class="pdf-item" data-category="references" data-title="Référence 4">
-      <a href="assets/pdf/reference4.pdf" download><img src="assets/images/image_reference4.png" alt="Référence 4"></a>
-      <p>Référence 4</p>
-      <a href="assets/pdf/reference4.pdf" class="download-btn" download>Télécharger</a>
-    </div>
-
+    <p>Bienvenue sur le site “Apprentissage des langues”.<br>Choisissez une catégorie dans le menu pour accéder aux PDF correspondants.</p>
   </div>
 </section>
-
-<script>
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  const pdfItems = document.querySelectorAll('.pdf-item');
-  const searchInput = document.getElementById('searchInput');
-
-  // Filtrage par catégorie
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      updateVisibility();
-    });
-  });
-
-  // Filtrage par recherche
-  searchInput.addEventListener('input', updateVisibility);
-
-  function updateVisibility() {
-    const category = document.querySelector('.filter-btn.active').dataset.category;
-    const search = searchInput.value.toLowerCase();
-    pdfItems.forEach(item => {
-      const matchesCategory = category === 'all' || item.dataset.category === category;
-      const matchesSearch = item.dataset.title.toLowerCase().includes(search);
-      item.style.display = matchesCategory && matchesSearch ? 'block' : 'none';
-    });
-  }
-</script>
 
 </body>
 </html>
