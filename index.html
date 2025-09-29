@@ -5,170 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apprentissage des langues</title>
   <style>
-    /* =======================
-       CSS Global
-    ======================= */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-    }
+    body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#333; }
+    header { background:#2196F3; color:white; padding:20px 0; text-align:center; }
+    header h1 { margin:0; font-size:2rem; }
 
-    header {
-      background-color: #2196F3;
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-    }
+    nav { position:sticky; top:0; background:#333; z-index:1000; display:flex; justify-content:center; }
+    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; }
+    nav ul li { position:relative; }
+    nav ul li a { display:block; color:white; text-decoration:none; font-weight:bold; padding:12px 18px; transition:0.3s; }
+    nav ul li a:hover, nav ul li a.active { background:#2196F3; }
+    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:#444; min-width:180px; border-radius:0 0 6px 6px; overflow:hidden; z-index:1000; }
+    nav ul li:hover>ul { display:block; }
+    nav ul li ul li a { padding:10px 15px; font-weight:normal; }
+    nav ul li ul li ul { left:100%; top:0; border-radius:0 6px 6px 0; }
 
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
+    section { padding:40px 20px; max-width:1200px; margin:auto; }
+    .pdf-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:25px; }
 
-    /* =======================
-       Menu principal + sous-menus
-    ======================= */
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: #333;
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-    }
+    .pdf-item { text-align:center; background:white; border-radius:12px; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.3s; }
+    .pdf-item:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.2); }
+    .pdf-item img { width:100%; max-width:180px; border-radius:10px; cursor:pointer; }
+    .pdf-item p { margin-top:10px; font-weight:bold; font-size:1rem; color:#555; }
+    .download-btn { display:inline-block; margin-top:8px; padding:8px 16px; background:#2196F3; color:white; border:none; border-radius:6px; text-decoration:none; font-weight:bold; cursor:pointer; transition:0.3s; }
+    .download-btn:hover { background:#1976D2; }
 
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    nav ul li {
-      position: relative;
-    }
-
-    nav ul li a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 12px 18px;
-      transition: background-color 0.3s;
-    }
-
-    nav ul li a:hover,
-    nav ul li a.active {
-      background-color: #2196F3;
-    }
-
-    /* Sous-menu */
-    nav ul li ul {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: #444;
-      min-width: 180px;
-      border-radius: 0 0 6px 6px;
-      overflow: hidden;
-      z-index: 1000;
-    }
-
-    nav ul li:hover > ul {
-      display: block;
-    }
-
-    nav ul li ul li a {
-      padding: 10px 15px;
-      font-weight: normal;
-    }
-
-    nav ul li ul li ul {
-      left: 100%;
-      top: 0;
-      border-radius: 0 6px 6px 0;
-    }
-
-    /* =======================
-       Section principale
-    ======================= */
-    section {
-      padding: 40px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .pdf-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 25px;
-    }
-
-    .pdf-item {
-      text-align: center;
-      background-color: white;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .pdf-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    }
-
-    .pdf-item img {
-      width: 100%;
-      max-width: 180px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-
-    .pdf-item p {
-      margin-top: 10px;
-      font-weight: bold;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    .download-btn {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 8px 16px;
-      background-color: #2196F3;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    .download-btn:hover {
-      background-color: #1976D2;
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-      }
-
-      nav ul li ul {
-        position: relative;
-      }
-
-      nav ul li ul li ul {
-        position: relative;
-      }
-    }
-
+    @media(max-width:768px){ nav ul{flex-direction:column;} nav ul li ul{position:relative;} nav ul li ul li ul{position:relative;} }
   </style>
 </head>
 <body>
@@ -227,10 +88,84 @@
 </nav>
 
 <section>
+  <h2>À la une - Anglais</h2>
   <div class="pdf-container">
-    <p>Bienvenue sur le site “Apprentissage des langues”.<br>Choisissez une catégorie dans le menu pour accéder aux PDF correspondants.</p>
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais1.pdf" download><img src="assets/images/anglais1.png" alt="Anglais 1"></a>
+      <p>Anglais 1</p>
+      <a href="assets/pdf/anglais1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais2.pdf" download><img src="assets/images/anglais2.png" alt="Anglais 2"></a>
+      <p>Anglais 2</p>
+      <a href="assets/pdf/anglais2.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais3.pdf" download><img src="assets/images/anglais3.png" alt="Anglais 3"></a>
+      <p>Anglais 3</p>
+      <a href="assets/pdf/anglais3.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais4.pdf" download><img src="assets/images/anglais4.png" alt="Anglais 4"></a>
+      <p>Anglais 4</p>
+      <a href="assets/pdf/anglais4.pdf" class="download-btn" download>Télécharger</a>
+    </div>
   </div>
-</section>
 
-</body>
-</html>
+  <h2>À la une - Arabe</h2>
+  <div class="pdf-container">
+    <div class="pdf-item">
+      <a href="assets/pdf/arabe1.pdf" download><img src="assets/images/arabe1.png" alt="Arabe 1"></a>
+      <p>Arabe 1</p>
+      <a href="assets/pdf/arabe1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/arabe2.pdf" download><img src="assets/images/arabe2.png" alt="Arabe 2"></a>
+      <p>Arabe 2</p>
+      <a href="assets/pdf/arabe2.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/arabe3.pdf" download><img src="assets/images/arabe3.png" alt="Arabe 3"></a>
+      <p>Arabe 3</p>
+      <a href="assets/pdf/arabe3.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/arabe4.pdf" download><img src="assets/images/arabe4.png" alt="Arabe 4"></a>
+      <p>Arabe 4</p>
+      <a href="assets/pdf/arabe4.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+  </div>
+
+  <h2>À la une - Exercices</h2>
+  <div class="pdf-container">
+    <div class="pdf-item">
+      <a href="assets/pdf/exo1.pdf" download><img src="assets/images/exo1.png" alt="Exo 1"></a>
+      <p>Exercice 1</p>
+      <a href="assets/pdf/exo1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/exo2.pdf" download><img src="assets/images/exo2.png" alt="Exo 2"></a>
+      <p>Exercice 2</p>
+      <a href="assets/pdf/exo2.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/exo3.pdf" download><img src="assets/images/exo3.png" alt="Exo 3"></a>
+      <p>Exercice 3</p>
+      <a href="assets/pdf/exo3.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/exo4.pdf" download><img src="assets/images/exo4.png" alt="Exo 4"></a>
+      <p>Exercice 4</p>
+      <a href="assets/pdf/exo4.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+  </div>
+
+  <h2>À la une - Références</h2>
+  <div class="pdf-container">
+    <div class="pdf-item">
+      <a href="assets/pdf/ref1.pdf" download><img src="assets/images/ref1.png" alt="Référence 1"></a>
+      <p>Référence 1</p>
+      <a href="assets/pdf/ref1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    <div class="pdf-item">
+      <a href="assets/pdf/ref
