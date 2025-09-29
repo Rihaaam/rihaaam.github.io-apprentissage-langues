@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cours Anglais - Grammaire</title>
+  <style>
+    /* Copier le CSS de index.html ici */
+    body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#333; }
+    header { background:#2196F3; color:white; padding:20px 0; text-align:center; }
+    header h1 { margin:0; font-size:2rem; }
+    nav { position:sticky; top:0; background:#333; z-index:1000; display:flex; justify-content:center; }
+    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; }
+    nav ul li { position:relative; }
+    nav ul li a { display:block; color:white; text-decoration:none; font-weight:bold; padding:12px 18px; transition:0.3s; }
+    nav ul li a:hover, nav ul li a.active { background:#2196F3; }
+    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:#444; min-width:180px; border-radius:0 0 6px 6px; overflow:hidden; z-index:1000; }
+    nav ul li:hover>ul { display:block; }
+    nav ul li ul li a { padding:10px 15px; font-weight:normal; }
+    nav ul li ul li ul { left:100%; top:0; border-radius:0 6px 6px 0; }
+    section { padding:40px 20px; max-width:1200px; margin:auto; }
+    .pdf-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:25px; }
+    .pdf-item { text-align:center; background:white; border-radius:12px; padding:15px; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:0.3s; }
+    .pdf-item:hover { transform:translateY(-5px); box-shadow:0 8px 16px rgba(0,0,0,0.2); }
+    .pdf-item img { width:100%; max-width:180px; border-radius:10px; cursor:pointer; }
+    .pdf-item p { margin-top:10px; font-weight:bold; font-size:1rem; color:#555; }
+    .download-btn { display:inline-block; margin-top:8px; padding:8px 16px; background:#2196F3; color:white; border:none; border-radius:6px; text-decoration:none; font-weight:bold; cursor:pointer; transition:0.3s; }
+    .download-btn:hover { background:#1976D2; }
+    @media(max-width:768px){ nav ul{flex-direction:column;} nav ul li ul{position:relative;} nav ul li ul li ul{position:relative;} }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Apprentissage des langues</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Tout</a></li>
+    <li>
+      <a href="#">Cours</a>
+      <ul>
+        <li>
+          <a href="#">Anglais</a>
+          <ul>
+            <li><a class="active" href="cours-anglais-grammaire.html">Grammaire</a></li>
+            <li><a href="cours-anglais-conjugaison.html">Conjugaison</a></li>
+            <li><a href="cours-anglais-vocabulaire.html">Vocabulaire</a></li>
+            <li><a href="cours-anglais-oral.html">Oral</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Arabe</a>
+          <ul>
+            <li><a href="cours-arabe-grammaire.html">Grammaire</a></li>
+            <li><a href="cours-arabe-conjugaison.html">Conjugaison</a></li>
+            <li><a href="cours-arabe-vocabulaire.html">Vocabulaire</a></li>
+            <li><a href="cours-arabe-oral.html">Oral</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Exercices</a>
+      <ul>
+        <li><a href="exercices-anglais.html">Anglais</a></li>
+        <li><a href="exercices-arabe.html">Arabe</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Références</a>
+      <ul>
+        <li><a href="references-anglais.html">Anglais</a></li>
+        <li><a href="references-arabe.html">Arabe</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<section>
+  <h2>Cours Anglais - Grammaire</h2>
+  <div class="pdf-container">
+    <!-- Exemple PDF -->
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais/grammaire1.pdf" download><img src="assets/images/anglais/grammaire1.png" alt="Grammaire 1"></a>
+      <p>Grammaire 1</p>
+      <a href="assets/pdf/anglais/grammaire1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais/grammaire2.pdf" download><img src="assets/images/anglais/grammaire2.png" alt="Grammaire 2"></a>
+      <p>Grammaire 2</p>
+      <a href="assets/pdf/anglais/grammaire2.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+  </div>
+</section>
+
+<footer style="background:#333; color:white; text-align:center; padding:20px 0; margin-top:40px;">
+  <p>Toi - Tous droits réservés &copy; 2025 - Mes notes d'études en langue Arabe et Anglaise</p>
+</footer>
+
+</body>
+</html>
