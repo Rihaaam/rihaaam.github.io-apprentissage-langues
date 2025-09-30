@@ -11,13 +11,100 @@
     header{background:var(--primary);color:#fff;padding:18px 0;text-align:center}
     header h1{margin:0;font-size:1.6rem}
 
-    nav{position:sticky;top:0;background:var(--nav-bg);z-index:2000}
-    nav .nav-inner{max-width:1200px;margin:0 auto}
-    nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center}
-    nav ul li{position:relative}
-    nav ul > li > a{display:block;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px}
-    nav a:hover, nav a.active{background:var(--primary)}
-    nav li.has-sub > a::after{content:" ▾"; font-size:.9em; margin-left:6px}
+    /* conteneur principal */
+nav {
+  position: sticky;
+  top: 0;
+  background: var(--nav-bg);
+  z-index: 2000;
+}
+
+/* wrapper centré */
+nav .nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* centrer le contenu horizontalement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* menu principal en ligne, NE PAS wrap */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;        /* <- empêche le menu de se casser en 2 lignes */
+  align-items: center;
+  justify-content: center;  /* assure le centrage du contenu */
+  white-space: nowrap;      /* empêche le texte de sauter de ligne */
+}
+
+/* items */
+nav ul li {
+  position: relative;
+}
+
+/* liens du menu */
+nav ul > li > a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 12px 18px;
+  white-space: nowrap; /* empêche le retour à la ligne dans les liens */
+}
+
+/* hover / actif */
+nav a:hover,
+nav a.active {
+  background: var(--primary);
+}
+
+/* indicateur de sous-menu */
+nav li.has-sub > a::after {
+  content: " ▾";
+  font-size: .9em;
+  margin-left: 6px;
+}
+
+/* --- sous-menus (masqués par défaut) --- */
+nav ul li ul {
+  display: none;            /* caché par défaut */
+  position: absolute;       /* positionné par rapport au li parent */
+  top: 100%;                /* juste sous l'item parent */
+  left: 0;                  /* aligné au bord gauche de l'item parent */
+  min-width: 160px;         /* largeur minimale (ajuste si besoin) */
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  background: var(--nav-bg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  z-index: 3000;
+  white-space: nowrap;
+}
+
+/* afficher le sous-menu au survol */
+nav ul li:hover > ul,
+nav ul li:focus-within > ul {
+  display: block;
+}
+
+/* liens à l'intérieur des sous-menus */
+nav ul li ul li a {
+  display: block;
+  padding: 8px 14px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* hover sur les sous-liens */
+nav ul li ul li a:hover {
+  background: var(--primary);
+}
+
 
     main{max-width:1200px;margin:24px auto;padding:0 18px 60px}
     section{margin-bottom:34px}
