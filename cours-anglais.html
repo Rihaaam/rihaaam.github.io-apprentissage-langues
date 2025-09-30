@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cours — Anglais</title>
+  <style>
+    /* Tu peux reprendre exactement le même CSS que dans index.html */
+    :root {
+      --primary: #4CAF50;
+      --nav-bg: #333;
+      --nav-sub-bg: #444;
+      --text: #333;
+      --muted: #555;
+    }
+    * { box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; background:#f9f9f9; color:var(--text); }
+    header { background:var(--primary); color:white; padding:20px 0; text-align:center; }
+    header h1 { margin:0; font-size:1.6rem; }
+
+    nav { position: sticky; top: 0; background: var(--nav-bg); z-index: 2000; }
+    nav .nav-inner { max-width: 1200px; margin: 0 auto; }
+    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; }
+    nav ul li { position: relative; }
+    nav ul > li > a { display:block; color:white; text-decoration:none; font-weight:700; padding:12px 18px; }
+    nav a:hover, nav a.active { background: var(--primary); }
+    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:var(--nav-sub-bg); min-width:200px; padding:6px 0; border-radius:0 0 6px 6px; }
+    nav ul li ul li a { display:block; padding:10px 16px; color:white; font-weight:500; text-decoration:none; }
+    nav ul li.has-sub > a::after { content: " ▾"; font-size:0.8em; margin-left:6px; opacity:0.9; }
+
+    section { padding: 28px 20px; max-width: 1200px; margin: 0 auto 40px; }
+    h2 { margin-top: 0; }
+
+    .pdf-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 22px; }
+    .pdf-item { background:white; border-radius:12px; padding:14px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.06); }
+    .pdf-item img { width:100%; max-width:180px; border-radius:8px; display:block; margin:0 auto; cursor:pointer; }
+    .download-btn { display:inline-block; margin-top:10px; padding:8px 14px; background:var(--primary); color:white; border-radius:6px; text-decoration:none; font-weight:700; }
+
+    footer { background:#333; color:white; text-align:center; padding:16px 10px; }
+
+    @media (max-width:900px) {
+      nav ul { flex-direction: column; align-items: stretch; }
+      nav ul > li > a { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.03); }
+      nav ul li ul { position: relative; left:0; top:0; display:none; width:100%; border-radius:0; }
+      nav li.has-sub > a::after { content: " ▸"; float:right; }
+      nav li.open > a::after { content: " ▾"; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Cours — Anglais</h1>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <ul>
+      <li><a href="index.html">Tout</a></li>
+      <li class="has-sub">
+        <a href="#" aria-haspopup="true" aria-expanded="false">Cours</a>
+        <ul>
+          <li><a href="cours-anglais.html" class="active">Anglais</a></li>
+          <li><a href="cours-arabe.html">Arabe</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="#">Exercices</a>
+        <ul>
+          <li><a href="exercices-anglais.html">Anglais</a></li>
+          <li><a href="exercices-arabe.html">Arabe</a></li>
+        </ul>
+      </li>
+      <li class="has-sub">
+        <a href="#">Références</a>
+        <ul>
+          <li><a href="references-anglais.html">Anglais</a></li>
+          <li><a href="references-arabe.html">Arabe</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<section>
+  <h2>Grammaire</h2>
+  <div class="pdf-container">
+    <!-- Exemple : ajoute ici tes .pdf et images -->
+    <!--
+    <div class="pdf-item">
+      <a href="assets/pdf/anglais/grammaire-1.pdf" download><img src="assets/images/anglais/grammaire-1.png" alt="Grammaire 1"></a>
+      <p>Grammaire — notion X</p>
+      <a href="assets/pdf/anglais/grammaire-1.pdf" class="download-btn" download>Télécharger</a>
+    </div>
+    -->
+  </div>
+
+  <h2 style="margin-top:28px">Conjugaisons</h2>
+  <div class="pdf-container">
+    <!-- fichiers de conjugaison -->
+  </div>
+
+  <h2 style="margin-top:28px">Vocabulaire</h2>
+  <div class="pdf-container">
+    <!-- fichiers de vocabulaire -->
+  </div>
+
+  <h2 style="margin-top:28px">Oral</h2>
+  <div class="pdf-container">
+    <!-- fichiers / images / MP3 si besoin (utiliser <a href="..." download>) -->
+  </div>
+</section>
+
+<footer>
+  <p>Jessica - Tous droits réservés &copy; 2025 - Mes notes d'études en langue Arabe et Anglaise</p>
+</footer>
+
+<script>
+  // Même petit script que sur index pour basculer le sous-menu "Cours" en mobile
+  (function(){
+    const nav = document.querySelector('nav');
+    if (!nav) return;
+    const parents = nav.querySelectorAll('li.has-sub');
+    parents.forEach(li => {
+      const a = li.querySelector(':scope > a');
+      a.addEventListener('click', function(ev){
+        if (window.innerWidth <= 900) {
+          ev.preventDefault();
+          const isOpen = li.classList.toggle('open');
+          const submenu = li.querySelector(':scope > ul');
+          if (!submenu) return;
+          submenu.style.display = isOpen ? 'block' : 'none';
+        }
+      });
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) {
+        document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = '');
+        document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('open'));
+      } else {
+        document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
+      }
+    });
+    if (window.innerWidth <= 900) {
+      document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
+    }
+  })();
+</script>
+
+</body>
+</html>
+
