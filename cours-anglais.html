@@ -5,60 +5,48 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cours — Anglais</title>
   <style>
-    /* Tu peux reprendre exactement le même CSS que dans index.html */
-    :root {
-      --primary: #4CAF50;
-      --nav-bg: #333;
-      --nav-sub-bg: #444;
-      --text: #333;
-      --muted: #555;
-    }
-    * { box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; background:#f9f9f9; color:var(--text); }
-    header { background:var(--primary); color:white; padding:20px 0; text-align:center; }
-    header h1 { margin:0; font-size:1.6rem; }
+    :root{ --primary:#4CAF50; --nav-bg:#333; --nav-sub-bg:#444; --text:#333; --muted:#555; --paper:#fff }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f9f9f9;color:var(--text)}
+    header{background:var(--primary);color:#fff;padding:18px 0;text-align:center}
+    header h1{margin:0;font-size:1.6rem}
 
-    nav { position: sticky; top: 0; background: var(--nav-bg); z-index: 2000; }
-    nav .nav-inner { max-width: 1200px; margin: 0 auto; }
-    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; }
-    nav ul li { position: relative; }
-    nav ul > li > a { display:block; color:white; text-decoration:none; font-weight:700; padding:12px 18px; }
-    nav a:hover, nav a.active { background: var(--primary); }
-    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:var(--nav-sub-bg); min-width:200px; padding:6px 0; border-radius:0 0 6px 6px; }
-    nav ul li ul li a { display:block; padding:10px 16px; color:white; font-weight:500; text-decoration:none; }
-    nav ul li.has-sub > a::after { content: " ▾"; font-size:0.8em; margin-left:6px; opacity:0.9; }
+    nav{position:sticky;top:0;background:var(--nav-bg);z-index:2000}
+    nav .nav-inner{max-width:1200px;margin:0 auto}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center}
+    nav ul li{position:relative}
+    nav ul > li > a{display:block;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px}
+    nav a:hover, nav a.active{background:var(--primary)}
+    nav li.has-sub > a::after{content:" ▾"; font-size:.9em; margin-left:6px}
 
-    section { padding: 28px 20px; max-width: 1200px; margin: 0 auto 40px; }
-    h2 { margin-top: 0; }
+    main{max-width:1200px;margin:24px auto;padding:0 18px 60px}
+    section{margin-bottom:34px}
+    section h2{margin:0 0 14px}
 
-    .pdf-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 22px; }
-    .pdf-item { background:white; border-radius:12px; padding:14px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.06); }
-    .pdf-item img { width:100%; max-width:180px; border-radius:8px; display:block; margin:0 auto; cursor:pointer; }
-    .download-btn { display:inline-block; margin-top:10px; padding:8px 14px; background:var(--primary); color:white; border-radius:6px; text-decoration:none; font-weight:700; }
+    .pdf-container{display:grid;gap:16px}
+    .pdf-container.four-per-row{grid-template-columns:repeat(4,1fr)}
+    .pdf-item{background:var(--paper);border-radius:12px;padding:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
+    .pdf-item img{width:100%;max-width:160px;border-radius:8px;display:block;margin:0 auto;cursor:pointer}
+    .pdf-item p{margin:10px 0 0;font-weight:700;color:var(--muted)}
+    .download-btn{display:inline-block;margin-top:8px;padding:8px 12px;background:var(--primary);color:#fff;border-radius:6px;text-decoration:none;font-weight:700}
 
-    footer { background:#333; color:white; text-align:center; padding:16px 10px; }
+    footer{background:#222;color:#fff;text-align:center;padding:14px 10px}
 
-    @media (max-width:900px) {
-      nav ul { flex-direction: column; align-items: stretch; }
-      nav ul > li > a { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.03); }
-      nav ul li ul { position: relative; left:0; top:0; display:none; width:100%; border-radius:0; }
-      nav li.has-sub > a::after { content: " ▸"; float:right; }
-      nav li.open > a::after { content: " ▾"; }
+    @media (max-width:900px){
+      nav ul{flex-direction:column;align-items:stretch}
+      .pdf-container.four-per-row{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Cours — Anglais</h1>
-</header>
+<header><h1>Cours — Anglais</h1></header>
 
 <nav>
   <div class="nav-inner">
     <ul>
       <li><a href="index.html">Tout</a></li>
       <li class="has-sub">
-        <a href="#" aria-haspopup="true" aria-expanded="false">Cours</a>
+        <a href="#">Cours</a>
         <ul>
           <li><a href="cours-anglais.html" class="active">Anglais</a></li>
           <li><a href="cours-arabe.html">Arabe</a></li>
@@ -82,71 +70,241 @@
   </div>
 </nav>
 
-<section>
-  <h2>Grammaire</h2>
-  <div class="pdf-container">
-    <!-- Exemple : ajoute ici tes .pdf et images -->
-    <!--
-    <div class="pdf-item">
-      <a href="assets/pdf/anglais/grammaire-1.pdf" download><img src="assets/images/anglais/grammaire-1.png" alt="Grammaire 1"></a>
-      <p>Grammaire — notion X</p>
-      <a href="assets/pdf/anglais/grammaire-1.pdf" class="download-btn" download>Télécharger</a>
+<main>
+  <!-- GRAMMAIRE (8 items = 2 lignes x 4 colonnes) -->
+  <section>
+    <h2>Grammaire</h2>
+    <div class="pdf-container four-per-row">
+      <!-- Remplace image & pdf par les tiens (grammaire-1 .. grammaire-8) -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-1.pdf" download><img src="assets/images/anglais/grammaire-1.png" alt="Grammaire 1"></a>
+        <p>Grammaire — 1</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-1.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-2.pdf" download><img src="assets/images/anglais/grammaire-2.png" alt="Grammaire 2"></a>
+        <p>Grammaire — 2</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-2.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-3.pdf" download><img src="assets/images/anglais/grammaire-3.png" alt="Grammaire 3"></a>
+        <p>Grammaire — 3</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-3.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-4.pdf" download><img src="assets/images/anglais/grammaire-4.png" alt="Grammaire 4"></a>
+        <p>Grammaire — 4</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-4.pdf" download>Télécharger</a>
+      </div>
+
+      <!-- deuxième ligne -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-5.pdf" download><img src="assets/images/anglais/grammaire-5.png" alt="Grammaire 5"></a>
+        <p>Grammaire — 5</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-5.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-6.pdf" download><img src="assets/images/anglais/grammaire-6.png" alt="Grammaire 6"></a>
+        <p>Grammaire — 6</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-6.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-7.pdf" download><img src="assets/images/anglais/grammaire-7.png" alt="Grammaire 7"></a>
+        <p>Grammaire — 7</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-7.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/grammaire-8.pdf" download><img src="assets/images/anglais/grammaire-8.png" alt="Grammaire 8"></a>
+        <p>Grammaire — 8</p>
+        <a class="download-btn" href="assets/pdf/anglais/grammaire-8.pdf" download>Télécharger</a>
+      </div>
     </div>
-    -->
-  </div>
+  </section>
 
-  <h2 style="margin-top:28px">Conjugaisons</h2>
-  <div class="pdf-container">
-    <!-- fichiers de conjugaison -->
-  </div>
+  <!-- CONJUGAISON -->
+  <section>
+    <h2>Conjugaisons</h2>
+    <div class="pdf-container four-per-row">
+      <!-- Conjugaison 1..8 -->
+      <!-- ... copie/colle le même pattern en changeant noms de fichiers ... -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-1.pdf" download><img src="assets/images/anglais/conjugaison-1.png" alt="Conjugaison 1"></a>
+        <p>Conjugaisons — 1</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-1.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-2.pdf" download><img src="assets/images/anglais/conjugaison-2.png" alt="Conjugaison 2"></a>
+        <p>Conjugaisons — 2</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-2.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-3.pdf" download><img src="assets/images/anglais/conjugaison-3.png" alt="Conjugaison 3"></a>
+        <p>Conjugaisons — 3</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-3.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-4.pdf" download><img src="assets/images/anglais/conjugaison-4.png" alt="Conjugaison 4"></a>
+        <p>Conjugaisons — 4</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-4.pdf" download>Télécharger</a>
+      </div>
 
-  <h2 style="margin-top:28px">Vocabulaire</h2>
-  <div class="pdf-container">
-    <!-- fichiers de vocabulaire -->
-  </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-5.pdf" download><img src="assets/images/anglais/conjugaison-5.png" alt="Conjugaison 5"></a>
+        <p>Conjugaisons — 5</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-5.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-6.pdf" download><img src="assets/images/anglais/conjugaison-6.png" alt="Conjugaison 6"></a>
+        <p>Conjugaisons — 6</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-6.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-7.pdf" download><img src="assets/images/anglais/conjugaison-7.png" alt="Conjugaison 7"></a>
+        <p>Conjugaisons — 7</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-7.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/conjugaison-8.pdf" download><img src="assets/images/anglais/conjugaison-8.png" alt="Conjugaison 8"></a>
+        <p>Conjugaisons — 8</p>
+        <a class="download-btn" href="assets/pdf/anglais/conjugaison-8.pdf" download>Télécharger</a>
+      </div>
+    </div>
+  </section>
 
-  <h2 style="margin-top:28px">Oral</h2>
-  <div class="pdf-container">
-    <!-- fichiers / images / MP3 si besoin (utiliser <a href="..." download>) -->
-  </div>
-</section>
+  <!-- VOCABULAIRE -->
+  <section>
+    <h2>Vocabulaire</h2>
+    <div class="pdf-container four-per-row">
+      <!-- Vocabulary 1..8 -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-1.pdf" download><img src="assets/images/anglais/vocab-1.png" alt="Vocab 1"></a>
+        <p>Vocabulaire — 1</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-1.pdf" download>Télécharger</a>
+      </div>
+      <!-- ... autres items jusqu'à 8 ... -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-2.pdf" download><img src="assets/images/anglais/vocab-2.png" alt="Vocab 2"></a>
+        <p>Vocabulaire — 2</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-2.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-3.pdf" download><img src="assets/images/anglais/vocab-3.png" alt="Vocab 3"></a>
+        <p>Vocabulaire — 3</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-3.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-4.pdf" download><img src="assets/images/anglais/vocab-4.png" alt="Vocab 4"></a>
+        <p>Vocabulaire — 4</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-4.pdf" download>Télécharger</a>
+      </div>
 
-<footer>
-  <p>Jessica - Tous droits réservés &copy; 2025 - Mes notes d'études en langue Arabe et Anglaise</p>
-</footer>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-5.pdf" download><img src="assets/images/anglais/vocab-5.png" alt="Vocab 5"></a>
+        <p>Vocabulaire — 5</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-5.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-6.pdf" download><img src="assets/images/anglais/vocab-6.png" alt="Vocab 6"></a>
+        <p>Vocabulaire — 6</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-6.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-7.pdf" download><img src="assets/images/anglais/vocab-7.png" alt="Vocab 7"></a>
+        <p>Vocabulaire — 7</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-7.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/vocab-8.pdf" download><img src="assets/images/anglais/vocab-8.png" alt="Vocab 8"></a>
+        <p>Vocabulaire — 8</p>
+        <a class="download-btn" href="assets/pdf/anglais/vocab-8.pdf" download>Télécharger</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORAL -->
+  <section>
+    <h2>Oral</h2>
+    <div class="pdf-container four-per-row">
+      <!-- Oral 1..8 -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-1.pdf" download><img src="assets/images/anglais/oral-1.png" alt="Oral 1"></a>
+        <p>Oral — 1</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-1.pdf" download>Télécharger</a>
+      </div>
+      <!-- ... jusqu'à 8 ... -->
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-2.pdf" download><img src="assets/images/anglais/oral-2.png" alt="Oral 2"></a>
+        <p>Oral — 2</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-2.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-3.pdf" download><img src="assets/images/anglais/oral-3.png" alt="Oral 3"></a>
+        <p>Oral — 3</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-3.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-4.pdf" download><img src="assets/images/anglais/oral-4.png" alt="Oral 4"></a>
+        <p>Oral — 4</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-4.pdf" download>Télécharger</a>
+      </div>
+
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-5.pdf" download><img src="assets/images/anglais/oral-5.png" alt="Oral 5"></a>
+        <p>Oral — 5</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-5.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-6.pdf" download><img src="assets/images/anglais/oral-6.png" alt="Oral 6"></a>
+        <p>Oral — 6</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-6.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-7.pdf" download><img src="assets/images/anglais/oral-7.png" alt="Oral 7"></a>
+        <p>Oral — 7</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-7.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/anglais/oral-8.pdf" download><img src="assets/images/anglais/oral-8.png" alt="Oral 8"></a>
+        <p>Oral — 8</p>
+        <a class="download-btn" href="assets/pdf/anglais/oral-8.pdf" download>Télécharger</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><p>Jessica - Tous droits réservés © 2025 - Mes notes d'études en langue Arabe et Anglaise</p></footer>
 
 <script>
-  // Même petit script que sur index pour basculer le sous-menu "Cours" en mobile
+  // même toggle menu mobile que sur index
   (function(){
     const nav = document.querySelector('nav');
-    if (!nav) return;
+    if(!nav) return;
     const parents = nav.querySelectorAll('li.has-sub');
     parents.forEach(li => {
       const a = li.querySelector(':scope > a');
       a.addEventListener('click', function(ev){
-        if (window.innerWidth <= 900) {
+        if(window.innerWidth <= 900){
           ev.preventDefault();
-          const isOpen = li.classList.toggle('open');
-          const submenu = li.querySelector(':scope > ul');
-          if (!submenu) return;
-          submenu.style.display = isOpen ? 'block' : 'none';
+          const open = li.classList.toggle('open');
+          const sub = li.querySelector(':scope > ul');
+          if(!sub) return;
+          sub.style.display = open ? 'block' : 'none';
         }
       });
     });
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) {
+      if(window.innerWidth > 900){
         document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = '');
         document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('open'));
       } else {
         document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
       }
     });
-    if (window.innerWidth <= 900) {
-      document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
-    }
+    if(window.innerWidth <= 900) document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
   })();
 </script>
 
 </body>
 </html>
+
 
