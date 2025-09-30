@@ -5,52 +5,41 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cours — Arabe</title>
   <style>
-    :root {
-      --primary: #FF9800; /* Orange */
-      --nav-bg: #333;
-      --nav-sub-bg: #444;
-      --text: #333;
-      --muted: #555;
-    }
-    * { box-sizing: border-box; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin:0; background:#f9f9f9; color:var(--text); }
-    header { background:var(--primary); color:white; padding:20px 0; text-align:center; }
-    header h1 { margin:0; font-size:1.6rem; }
+    :root{ --primary:#FF9800; --nav-bg:#333; --nav-sub-bg:#444; --text:#333; --muted:#555; --paper:#fff }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f9f9f9;color:var(--text)}
+    header{background:var(--primary);color:#fff;padding:18px 0;text-align:center}
+    header h1{margin:0;font-size:1.6rem}
 
-    nav { position: sticky; top: 0; background: var(--nav-bg); z-index: 2000; }
-    nav .nav-inner { max-width: 1200px; margin: 0 auto; }
-    nav ul { list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; }
-    nav ul li { position: relative; }
-    nav ul > li > a { display:block; color:white; text-decoration:none; font-weight:700; padding:12px 18px; }
-    nav a:hover, nav a.active { background: var(--primary); }
-    nav ul li ul { display:none; position:absolute; top:100%; left:0; background:var(--nav-sub-bg); min-width:200px; padding:6px 0; border-radius:0 0 6px 6px; }
-    nav ul li ul li a { display:block; padding:10px 16px; color:white; font-weight:500; text-decoration:none; }
-    nav ul li.has-sub > a::after { content: " ▾"; font-size:0.8em; margin-left:6px; opacity:0.9; }
+    nav{position:sticky;top:0;background:var(--nav-bg);z-index:2000}
+    nav .nav-inner{max-width:1200px;margin:0 auto}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;align-items:center}
+    nav ul li{position:relative}
+    nav ul > li > a{display:block;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px}
+    nav a:hover, nav a.active{background:var(--primary)}
+    nav li.has-sub > a::after{content:" ▾"; font-size:.9em; margin-left:6px}
 
-    section { padding: 28px 20px; max-width: 1200px; margin: 0 auto 40px; }
-    h2 { margin-top: 0; }
+    main{max-width:1200px;margin:24px auto;padding:0 18px 60px}
+    section{margin-bottom:34px}
+    section h2{margin:0 0 14px}
 
-    .pdf-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 22px; }
-    .pdf-item { background:white; border-radius:12px; padding:14px; text-align:center; box-shadow:0 4px 10px rgba(0,0,0,0.06); }
-    .pdf-item img { width:100%; max-width:180px; border-radius:8px; display:block; margin:0 auto; cursor:pointer; }
-    .download-btn { display:inline-block; margin-top:10px; padding:8px 14px; background:var(--primary); color:white; border-radius:6px; text-decoration:none; font-weight:700; }
+    .pdf-container{display:grid;gap:16px}
+    .pdf-container.four-per-row{grid-template-columns:repeat(4,1fr)}
+    .pdf-item{background:var(--paper);border-radius:12px;padding:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
+    .pdf-item img{width:100%;max-width:160px;border-radius:8px;display:block;margin:0 auto;cursor:pointer}
+    .pdf-item p{margin:10px 0 0;font-weight:700;color:var(--muted)}
+    .download-btn{display:inline-block;margin-top:8px;padding:8px 12px;background:var(--primary);color:#fff;border-radius:6px;text-decoration:none;font-weight:700}
 
-    footer { background:#333; color:white; text-align:center; padding:16px 10px; }
+    footer{background:#222;color:#fff;text-align:center;padding:14px 10px}
 
-    @media (max-width:900px) {
-      nav ul { flex-direction: column; align-items: stretch; }
-      nav ul > li > a { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.03); }
-      nav ul li ul { position: relative; left:0; top:0; display:none; width:100%; border-radius:0; }
-      nav li.has-sub > a::after { content: " ▸"; float:right; }
-      nav li.open > a::after { content: " ▾"; }
+    @media (max-width:900px){
+      nav ul{flex-direction:column;align-items:stretch}
+      .pdf-container.four-per-row{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>Cours — Arabe</h1>
-</header>
+<header><h1>Cours — Arabe</h1></header>
 
 <nav>
   <div class="nav-inner">
@@ -81,73 +70,134 @@
   </div>
 </nav>
 
-<section>
-  <h2>Grammaire</h2>
-  <div class="pdf-container">
-    <!-- Exemple -->
-    <!--
-    <div class="pdf-item">
-      <a href="assets/pdf/arabe/grammaire-1.pdf" download>
-        <img src="assets/images/arabe/grammaire-1.png" alt="Grammaire arabe 1">
-      </a>
-      <p>Grammaire — notion X</p>
-      <a href="assets/pdf/arabe/grammaire-1.pdf" class="download-btn" download>Télécharger</a>
+<main>
+  <!-- chaque section contient 8 items (2 lignes x 4) : remplace les fichiers par les tiens -->
+  <section>
+    <h2>Grammaire</h2>
+    <div class="pdf-container four-per-row">
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-1.pdf" download><img src="assets/images/arabe/grammaire-1.png" alt="Grammaire Arabe 1"></a>
+        <p>Grammaire — 1</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-1.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-2.pdf" download><img src="assets/images/arabe/grammaire-2.png" alt="Grammaire Arabe 2"></a>
+        <p>Grammaire — 2</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-2.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-3.pdf" download><img src="assets/images/arabe/grammaire-3.png" alt="Grammaire Arabe 3"></a>
+        <p>Grammaire — 3</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-3.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-4.pdf" download><img src="assets/images/arabe/grammaire-4.png" alt="Grammaire Arabe 4"></a>
+        <p>Grammaire — 4</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-4.pdf" download>Télécharger</a>
+      </div>
+
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-5.pdf" download><img src="assets/images/arabe/grammaire-5.png" alt="Grammaire Arabe 5"></a>
+        <p>Grammaire — 5</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-5.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-6.pdf" download><img src="assets/images/arabe/grammaire-6.png" alt="Grammaire Arabe 6"></a>
+        <p>Grammaire — 6</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-6.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-7.pdf" download><img src="assets/images/arabe/grammaire-7.png" alt="Grammaire Arabe 7"></a>
+        <p>Grammaire — 7</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-7.pdf" download>Télécharger</a>
+      </div>
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/grammaire-8.pdf" download><img src="assets/images/arabe/grammaire-8.png" alt="Grammaire Arabe 8"></a>
+        <p>Grammaire — 8</p>
+        <a class="download-btn" href="assets/pdf/arabe/grammaire-8.pdf" download>Télécharger</a>
+      </div>
     </div>
-    -->
-  </div>
+  </section>
 
-  <h2 style="margin-top:28px">Conjugaisons</h2>
-  <div class="pdf-container">
-    <!-- fichiers conjugaison -->
-  </div>
+  <section>
+    <h2>Conjugaisons</h2>
+    <div class="pdf-container four-per-row">
+      <!-- conjugaison 1..8 -->
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/conjugaison-1.pdf" download><img src="assets/images/arabe/conjugaison-1.png" alt="Conjugaison 1"></a>
+        <p>Conjugaisons — 1</p>
+        <a class="download-btn" href="assets/pdf/arabe/conjugaison-1.pdf" download>Télécharger</a>
+      </div>
+      <!-- ... autres items ... -->
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/conjugaison-2.pdf" download><img src="assets/images/arabe/conjugaison-2.png" alt="Conjugaison 2"></a>
+        <p>Conjugaisons — 2</p>
+        <a class="download-btn" href="assets/pdf/arabe/conjugaison-2.pdf" download>Télécharger</a>
+      </div>
+      <!-- remplis jusqu'à 8 -->
+    </div>
+  </section>
 
-  <h2 style="margin-top:28px">Vocabulaire</h2>
-  <div class="pdf-container">
-    <!-- fichiers vocabulaire -->
-  </div>
+  <section>
+    <h2>Vocabulaire</h2>
+    <div class="pdf-container four-per-row">
+      <!-- vocabulaire 1..8 -->
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/vocab-1.pdf" download><img src="assets/images/arabe/vocab-1.png" alt="Vocabulaire 1"></a>
+        <p>Vocabulaire — 1</p>
+        <a class="download-btn" href="assets/pdf/arabe/vocab-1.pdf" download>Télécharger</a>
+      </div>
+      <!-- ... -->
+    </div>
+  </section>
 
-  <h2 style="margin-top:28px">Oral</h2>
-  <div class="pdf-container">
-    <!-- fichiers oral -->
-  </div>
-</section>
+  <section>
+    <h2>Oral</h2>
+    <div class="pdf-container four-per-row">
+      <!-- oral 1..8 -->
+      <div class="pdf-item">
+        <a href="assets/pdf/arabe/oral-1.pdf" download><img src="assets/images/arabe/oral-1.png" alt="Oral 1"></a>
+        <p>Oral — 1</p>
+        <a class="download-btn" href="assets/pdf/arabe/oral-1.pdf" download>Télécharger</a>
+      </div>
+      <!-- ... -->
+    </div>
+  </section>
+</main>
 
-<footer>
-  <p>Jessica - Tous droits réservés &copy; 2025 - Mes notes d'études en langue Arabe et Anglaise</p>
-</footer>
+<footer><p>Jessica - Tous droits réservés © 2025 - Mes notes d'études en langue Arabe et Anglaise</p></footer>
 
 <script>
-  // Script menu mobile
+  // toggle mobile simple
   (function(){
     const nav = document.querySelector('nav');
-    if (!nav) return;
+    if(!nav) return;
     const parents = nav.querySelectorAll('li.has-sub');
     parents.forEach(li => {
       const a = li.querySelector(':scope > a');
       a.addEventListener('click', function(ev){
-        if (window.innerWidth <= 900) {
+        if(window.innerWidth <= 900){
           ev.preventDefault();
-          const isOpen = li.classList.toggle('open');
-          const submenu = li.querySelector(':scope > ul');
-          if (!submenu) return;
-          submenu.style.display = isOpen ? 'block' : 'none';
+          const open = li.classList.toggle('open');
+          const sub = li.querySelector(':scope > ul');
+          if(!sub) return;
+          sub.style.display = open ? 'block' : 'none';
         }
       });
     });
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) {
+      if(window.innerWidth > 900){
         document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = '');
         document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('open'));
       } else {
         document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
       }
     });
-    if (window.innerWidth <= 900) {
-      document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
-    }
+    if(window.innerWidth <= 900) document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
   })();
 </script>
 
 </body>
 </html>
+
 
