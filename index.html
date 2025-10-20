@@ -1,397 +1,217 @@
-s<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cours — Anglais</title>
-  <style>
-    :root{ --primary:#4CAF50; --nav-bg:#333; --nav-sub-bg:#444; --text:#333; --muted:#555; --paper:#fff }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;background:#f9f9f9;color:var(--text)}
-    header{background:var(--primary);color:#fff;padding:18px 0;text-align:center}
-    header h1{margin:0;font-size:1.6rem}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MonSite - Version Statique</title>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<style>
+/* ===== Reset ===== */
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family: 'Lobster', cursive; line-height:1.6; background:#fff; color:#333;}
+a {text-decoration:none; color:inherit;}
+ul {list-style:none;}
 
-    /* conteneur principal */
-nav {
-  position: sticky;
-  top: 0;
-  background: var(--nav-bg);
-  z-index: 2000;
+/* ===== Header ===== */
+header {background:#1a1a1a; color:#fff;}
+.header-container {max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:15px;}
+.logo h1 {font-size:2rem;}
+nav {position:relative;}
+nav ul {display:flex; gap:20px;}
+nav ul li {position:relative;}
+nav ul li ul {position:absolute; top:100%; left:0; background:#333; display:none; flex-direction:column; min-width:180px;}
+nav ul li:hover > ul {display:flex;}
+nav ul li ul li {padding:10px;}
+
+/* ===== Hamburger menu (mobile) ===== */
+.menu-toggle {display:none; cursor:pointer; font-size:1.5rem;}
+@media(max-width:768px){
+    nav ul {flex-direction:column; display:none; width:100%; background:#1a1a1a;}
+    nav ul li ul {position:static;}
+    nav ul li ul li {padding-left:20px;}
+    nav ul.show {display:flex;}
+    .menu-toggle {display:block;}
 }
 
-/* wrapper centré */
-nav .nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  /* centrer le contenu horizontalement */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* ===== Slider ===== */
+.slider {position:relative; height:600px; overflow:hidden;}
+.slide {position:absolute; width:100%; height:100%; top:0; left:0; background-size:cover; background-position:center; opacity:0; transition:opacity 1s ease;}
+.slide.active {opacity:1;}
+.slide-content {position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); text-align:center; color:#fff;}
+.slider-controls {position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; transform:translateY(-50%); padding:0 20px; box-sizing:border-box;}
+.slider-controls span {cursor:pointer; font-size:2rem; color:#fff; background:rgba(0,0,0,0.3); padding:10px; border-radius:50%; transition:0.3s;}
+.slider-controls span:hover {background:rgba(0,0,0,0.6);}
 
-/* menu principal en ligne, NE PAS wrap */
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: nowrap;        /* <- empêche le menu de se casser en 2 lignes */
-  align-items: center;
-  justify-content: center;  /* assure le centrage du contenu */
-  white-space: nowrap;      /* empêche le texte de sauter de ligne */
-}
+/* ===== Sections ===== */
+section {padding:80px 15px;}
+section h2 {text-align:center; margin-bottom:40px; font-size:2.5rem;}
+.section-container {max-width:1200px; margin:0 auto; display:grid; gap:40px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
 
-/* items */
-nav ul li {
-  position: relative;
-}
+/* ===== Footer ===== */
+footer {background:#111; color:#fff; padding:50px 15px;}
+.footer-container {max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px;}
+.footer-container h3 {margin-bottom:20px;}
+.footer-container p, .footer-container a {color:#fff; font-size:0.9rem;}
+.footer-bottom {text-align:center; margin-top:30px; font-size:0.8rem; color:#aaa;}
 
-/* liens du menu */
-nav ul > li > a {
-  display: block;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  padding: 12px 18px;
-  white-space: nowrap; /* empêche le retour à la ligne dans les liens */
-}
-
-/* hover / actif */
-nav a:hover,
-nav a.active {
-  background: var(--primary);
-}
-
-/* indicateur de sous-menu */
-nav li.has-sub > a::after {
-  content: " ▾";
-  font-size: .9em;
-  margin-left: 6px;
-}
-
-/* --- sous-menus (masqués par défaut) --- */
-nav ul li ul {
-  display: none;            /* caché par défaut */
-  position: absolute;       /* positionné par rapport au li parent */
-  top: 100%;                /* juste sous l'item parent */
-  left: 0;                  /* aligné au bord gauche de l'item parent */
-  min-width: 160px;         /* largeur minimale (ajuste si besoin) */
-  list-style: none;
-  margin: 0;
-  padding: 6px 0;
-  background: var(--nav-bg);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  z-index: 3000;
-  white-space: nowrap;
-}
-
-/* afficher le sous-menu au survol */
-nav ul li:hover > ul,
-nav ul li:focus-within > ul {
-  display: block;
-}
-
-/* liens à l'intérieur des sous-menus */
-nav ul li ul li a {
-  display: block;
-  padding: 8px 14px;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* hover sur les sous-liens */
-nav ul li ul li a:hover {
-  background: var(--primary);
-}
-
-
-    main{max-width:1200px;margin:24px auto;padding:0 18px 60px}
-    section{margin-bottom:34px}
-    section h2{margin:0 0 14px}
-
-    .pdf-container{display:grid;gap:16px}
-    .pdf-container.four-per-row{grid-template-columns:repeat(4,1fr)}
-    .pdf-item{background:var(--paper);border-radius:12px;padding:12px;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.06)}
-    .pdf-item img{width:100%;max-width:160px;border-radius:8px;display:block;margin:0 auto;cursor:pointer}
-    .pdf-item p{margin:10px 0 0;font-weight:700;color:var(--muted)}
-    .download-btn{display:inline-block;margin-top:8px;padding:8px 12px;background:var(--primary);color:#fff;border-radius:6px;text-decoration:none;font-weight:700}
-
-    footer{background:#222;color:#fff;text-align:center;padding:14px 10px}
-
-    @media (max-width:900px){
-      nav ul{flex-direction:column;align-items:stretch}
-      .pdf-container.four-per-row{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-    }
-  </style>
+/* ===== Buttons ===== */
+.button {display:inline-block; padding:10px 20px; background:#4a90e2; color:#fff; border-radius:5px; transition:0.3s;}
+.button:hover {background:#357ABD;}
+</style>
 </head>
 <body>
-<header><h1>Mes cours en tant qu'autodidacte</h1></header>
 
-<nav>
-  <div class="nav-inner">
-    <ul>
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li class="has-sub">
-        <a href="#">Cours</a>
-        <ul>
-          <li><a href="cours-anglais.html" >Anglais</a></li>
-          <li><a href="cours-arabe.html">Arabe</a></li>
-          <li><a href="cours-informatique.html">Informatique</a></li>
-        </ul>
-      </li>
-      <li class="has-sub">
-        <a href="#">Exercices</a>
-        <ul>
-          <li><a href="exercices-anglais.html">Anglais</a></li>
-          <li><a href="exercices-arabe.html">Arabe</a></li>
-        </ul>
-      </li>
-      <li class="has-sub">
-        <a href="#">Références</a>
-        <ul>
-          <li><a href="references-anglais.html">Anglais</a></li>
-          <li><a href="references-arabe.html">Arabe</a></li>
-          <li><a href="references-informatique.html">Informatique</a></li>
-        </ul>
-      </li>
-    </ul>
+<!-- ===== Header ===== -->
+<header>
+  <div class="header-container">
+    <div class="logo"><h1>MonSite</h1></div>
+    <div class="menu-toggle">&#9776;</div>
+    <nav>
+      <ul id="menu">
+        <li><a href="#">ACCUEIL</a></li>
+        <li><a href="#">LANGUES</a>
+          <ul>
+            <li><a href="#">Arabe débutant</a></li>
+            <li><a href="#">Arabe Intermédiaire</a></li>
+            <li><a href="#">Arabe Avancé</a></li>
+            <li><a href="#">Lectures bilingues</a></li>
+            <li><a href="#">Vocabulaire</a></li>
+            <li><a href="#">Conjugaison</a></li>
+          </ul>
+        </li>
+        <li><a href="#">BLOG</a></li>
+        <li><a href="#">CONTACT</a></li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
 
-<main>
-  <!-- Apprentissage de l'Anglais -->
-  <section>
-    <h2>Apprentissage de l'Anglais</h2>
-    <div class="pdf-container four-per-row">
-      <!-- Remplace image & pdf par les tiens (grammaire-1 .. grammaire-8) -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-1.pdf" download><img src="assets/images/anglais/grammaire-1.png" alt="Grammaire 1"></a>
-        <p>Grammaire — 1</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-1.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-2.pdf" download><img src="assets/images/anglais/grammaire-2.png" alt="Grammaire 2"></a>
-        <p>Grammaire — 2</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-2.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-3.pdf" download><img src="assets/images/anglais/grammaire-3.png" alt="Grammaire 3"></a>
-        <p>Grammaire — 3</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-3.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-4.pdf" download><img src="assets/images/anglais/grammaire-4.png" alt="Grammaire 4"></a>
-        <p>Grammaire — 4</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-4.pdf" download>Télécharger</a>
-      </div>
-
-      <!-- deuxième ligne -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-5.pdf" download><img src="assets/images/anglais/grammaire-5.png" alt="Grammaire 5"></a>
-        <p>Grammaire — 5</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-5.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-6.pdf" download><img src="assets/images/anglais/grammaire-6.png" alt="Grammaire 6"></a>
-        <p>Grammaire — 6</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-6.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-7.pdf" download><img src="assets/images/anglais/grammaire-7.png" alt="Grammaire 7"></a>
-        <p>Grammaire — 7</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-7.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/grammaire-8.pdf" download><img src="assets/images/anglais/grammaire-8.png" alt="Grammaire 8"></a>
-        <p>Grammaire — 8</p>
-        <a class="download-btn" href="assets/pdf/anglais/grammaire-8.pdf" download>Télécharger</a>
+<!-- ===== Hero / Slider ===== -->
+<section class="hero">
+  <div class="slider">
+    <div class="slide active" style="background-image:url('https://via.placeholder.com/1600x600/4a90e2/ffffff?text=Slide+1');">
+      <div class="slide-content">
+        <h2>Bienvenue sur MonSite</h2>
+        <p>Slide 1 - Exemple de texte pour le slider.</p>
+        <a href="#" class="button">En savoir plus</a>
       </div>
     </div>
-  </section>
-
-  <!-- Arabe -->
-  <section>
-    <h2>Apprentissage de l'Arabe</h2>
-    <div class="pdf-container four-per-row">
-      <!-- Conjugaison 1..8 -->
-      <!-- ... copie/colle le même pattern en changeant noms de fichiers ... -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-1.pdf" download><img src="assets/images/anglais/conjugaison-1.png" alt="Conjugaison 1"></a>
-        <p>Conjugaisons — 1</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-1.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-2.pdf" download><img src="assets/images/anglais/conjugaison-2.png" alt="Conjugaison 2"></a>
-        <p>Conjugaisons — 2</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-2.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-3.pdf" download><img src="assets/images/anglais/conjugaison-3.png" alt="Conjugaison 3"></a>
-        <p>Conjugaisons — 3</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-3.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-4.pdf" download><img src="assets/images/anglais/conjugaison-4.png" alt="Conjugaison 4"></a>
-        <p>Conjugaisons — 4</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-4.pdf" download>Télécharger</a>
-      </div>
-
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-5.pdf" download><img src="assets/images/anglais/conjugaison-5.png" alt="Conjugaison 5"></a>
-        <p>Conjugaisons — 5</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-5.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-6.pdf" download><img src="assets/images/anglais/conjugaison-6.png" alt="Conjugaison 6"></a>
-        <p>Conjugaisons — 6</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-6.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-7.pdf" download><img src="assets/images/anglais/conjugaison-7.png" alt="Conjugaison 7"></a>
-        <p>Conjugaisons — 7</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-7.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/conjugaison-8.pdf" download><img src="assets/images/anglais/conjugaison-8.png" alt="Conjugaison 8"></a>
-        <p>Conjugaisons — 8</p>
-        <a class="download-btn" href="assets/pdf/anglais/conjugaison-8.pdf" download>Télécharger</a>
+    <div class="slide" style="background-image:url('https://via.placeholder.com/1600x600/357ABD/ffffff?text=Slide+2');">
+      <div class="slide-content">
+        <h2>Apprenez l’Arabe</h2>
+        <p>Slide 2 - Exemple de texte pour le slider.</p>
+        <a href="#" class="button">Découvrir</a>
       </div>
     </div>
-  </section>
-
-  <!-- Exercices Anglais -->
-  <section>
-    <h2>Exercices Anglais</h2>
-    <div class="pdf-container four-per-row">
-      <!-- Vocabulary 1..8 -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-1.pdf" download><img src="assets/images/anglais/vocab-1.png" alt="Vocab 1"></a>
-        <p>Vocabulaire — 1</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-1.pdf" download>Télécharger</a>
-      </div>
-      <!-- ... autres items jusqu'à 8 ... -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-2.pdf" download><img src="assets/images/anglais/vocab-2.png" alt="Vocab 2"></a>
-        <p>Vocabulaire — 2</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-2.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-3.pdf" download><img src="assets/images/anglais/vocab-3.png" alt="Vocab 3"></a>
-        <p>Vocabulaire — 3</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-3.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-4.pdf" download><img src="assets/images/anglais/vocab-4.png" alt="Vocab 4"></a>
-        <p>Vocabulaire — 4</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-4.pdf" download>Télécharger</a>
-      </div>
-
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-5.pdf" download><img src="assets/images/anglais/vocab-5.png" alt="Vocab 5"></a>
-        <p>Vocabulaire — 5</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-5.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-6.pdf" download><img src="assets/images/anglais/vocab-6.png" alt="Vocab 6"></a>
-        <p>Vocabulaire — 6</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-6.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-7.pdf" download><img src="assets/images/anglais/vocab-7.png" alt="Vocab 7"></a>
-        <p>Vocabulaire — 7</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-7.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/vocab-8.pdf" download><img src="assets/images/anglais/vocab-8.png" alt="Vocab 8"></a>
-        <p>Vocabulaire — 8</p>
-        <a class="download-btn" href="assets/pdf/anglais/vocab-8.pdf" download>Télécharger</a>
+    <div class="slide" style="background-image:url('https://via.placeholder.com/1600x600/FF6347/ffffff?text=Slide+3');">
+      <div class="slide-content">
+        <h2>Progressez à votre rythme</h2>
+        <p>Slide 3 - Exemple de texte pour le slider.</p>
+        <a href="#" class="button">Commencer</a>
       </div>
     </div>
-  </section>
-
-  <!-- Exercices Arabe -->
-  <section>
-    <h2>Exercices Arabe</h2>
-    <div class="pdf-container four-per-row">
-      <!-- Oral 1..8 -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-1.pdf" download><img src="assets/images/anglais/oral-1.png" alt="Oral 1"></a>
-        <p>Oral — 1</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-1.pdf" download>Télécharger</a>
-      </div>
-      <!-- ... jusqu'à 8 ... -->
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-2.pdf" download><img src="assets/images/anglais/oral-2.png" alt="Oral 2"></a>
-        <p>Oral — 2</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-2.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-3.pdf" download><img src="assets/images/anglais/oral-3.png" alt="Oral 3"></a>
-        <p>Oral — 3</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-3.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-4.pdf" download><img src="assets/images/anglais/oral-4.png" alt="Oral 4"></a>
-        <p>Oral — 4</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-4.pdf" download>Télécharger</a>
-      </div>
-
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-5.pdf" download><img src="assets/images/anglais/oral-5.png" alt="Oral 5"></a>
-        <p>Oral — 5</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-5.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-6.pdf" download><img src="assets/images/anglais/oral-6.png" alt="Oral 6"></a>
-        <p>Oral — 6</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-6.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-7.pdf" download><img src="assets/images/anglais/oral-7.png" alt="Oral 7"></a>
-        <p>Oral — 7</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-7.pdf" download>Télécharger</a>
-      </div>
-      <div class="pdf-item">
-        <a href="assets/pdf/anglais/oral-8.pdf" download><img src="assets/images/anglais/oral-8.png" alt="Oral 8"></a>
-        <p>Oral — 8</p>
-        <a class="download-btn" href="assets/pdf/anglais/oral-8.pdf" download>Télécharger</a>
-      </div>
+    <div class="slider-controls">
+      <span class="prev">&#10094;</span>
+      <span class="next">&#10095;</span>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
-<footer><p>Jessica - Tous droits réservés © 2025 - Mes notes d'études en langue Arabe et Anglaise</p></footer>
+<!-- ===== À propos ===== -->
+<section id="about">
+  <h2>À propos</h2>
+  <div class="section-container">
+    <div><h3>Notre Mission</h3><p>Exemple de texte pour présenter votre site ou votre activité.</p></div>
+    <div><h3>Vision</h3><p>Exemple de texte pour la vision de votre projet.</p></div>
+    <div><h3>Valeurs</h3><p>Exemple de texte pour les valeurs ou points forts.</p></div>
+  </div>
+</section>
+
+<!-- ===== Services ===== -->
+<section id="services">
+  <h2>Services</h2>
+  <div class="section-container">
+    <div><h3>Service 1</h3><p>Description du service 1.</p></div>
+    <div><h3>Service 2</h3><p>Description du service 2.</p></div>
+    <div><h3>Service 3</h3><p>Description du service 3.</p></div>
+  </div>
+</section>
+
+<!-- ===== Portfolio ===== -->
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="section-container">
+    <div><img src="https://via.placeholder.com/300x200" alt="Projet 1"><h3>Projet 1</h3></div>
+    <div><img src="https://via.placeholder.com/300x200" alt="Projet 2"><h3>Projet 2</h3></div>
+    <div><img src="https://via.placeholder.com/300x200" alt="Projet 3"><h3>Projet 3</h3></div>
+  </div>
+</section>
+
+<!-- ===== Blog ===== -->
+<section id="blog">
+  <h2>Blog</h2>
+  <div class="section-container">
+    <div><h3>Article 1</h3><p>Extrait de l'article 1...</p></div>
+    <div><h3>Article 2</h3><p>Extrait de l'article 2...</p></div>
+    <div><h3>Article 3</h3><p>Extrait de l'article 3...</p></div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="footer-container">
+    <div>
+      <h3>À propos</h3>
+      <p>Exemple de texte pour le footer.</p>
+    </div>
+    <div>
+      <h3>Liens</h3>
+      <p><a href="#">ACCUEIL</a></p>
+      <p><a href="#">BLOG</a></p>
+      <p><a href="#">CONTACT</a></p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email: contact@example.com</p>
+      <p>Téléphone: +33 6 12 34 56 78</p>
+    </div>
+    <div>
+      <h3>Suivez-nous</h3>
+      <p><a href="#">Facebook</a></p>
+      <p><a href="#">Twitter</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2025 MonSite. Tous droits réservés.</div>
+</footer>
 
 <script>
-  // même toggle menu mobile que sur index
-  (function(){
-    const nav = document.querySelector('nav');
-    if(!nav) return;
-    const parents = nav.querySelectorAll('li.has-sub');
-    parents.forEach(li => {
-      const a = li.querySelector(':scope > a');
-      a.addEventListener('click', function(ev){
-        if(window.innerWidth <= 900){
-          ev.preventDefault();
-          const open = li.classList.toggle('open');
-          const sub = li.querySelector(':scope > ul');
-          if(!sub) return;
-          sub.style.display = open ? 'block' : 'none';
-        }
-      });
-    });
-    window.addEventListener('resize', () => {
-      if(window.innerWidth > 900){
-        document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = '');
-        document.querySelectorAll('nav ul li').forEach(li => li.classList.remove('open'));
-      } else {
-        document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
-      }
-    });
-    if(window.innerWidth <= 900) document.querySelectorAll('nav ul li ul').forEach(u => u.style.display = 'none');
-  })();
+// ===== Menu toggle =====
+const menuToggle = document.querySelector('.menu-toggle');
+const menu = document.getElementById('menu');
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('show');
+});
+
+// ===== Slider JS =====
+const slides = document.querySelectorAll('.slide');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+let current = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+}
+
+function nextSlide() { current = (current + 1) % slides.length; showSlide(current); }
+function prevSlide() { current = (current - 1 + slides.length) % slides.length; showSlide(current); }
+
+next.addEventListener('click', nextSlide);
+prev.addEventListener('click', prevSlide);
+
+// Auto slide every 5s
+setInterval(nextSlide, 5000);
 </script>
 
 </body>
 </html>
+
